@@ -8,10 +8,22 @@
       {{ index + 1 }}
     </div>
   </div>
+
+  <button type="button" class="btn adjustBtn" @click="showAdjustModal = true">Adjust ball</button>
+
+  <ModalComp>
+    <template #header>Adjust balls</template>
+    <template #body>
+      <div class="ballGenerator">
+        
+      </div>
+    </template>
+  </ModalComp>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, provide } from 'vue';
+import ModalComp from './ModalComp.vue';
 
 const jiugongge = ref(null)
 const squareNum = 9;
@@ -23,6 +35,8 @@ const balls = ref([
   createBall(81, 13, 130, 13),
   createBall(81, 81, 130, 81),
 ]);
+
+const showAdjustModal = ref(false);
 
 function createBall(startX, startY, endX, endY) {
   return { startX, startY, endX, endY };
@@ -40,6 +54,9 @@ function configBallAnimate(ballId, ballConfig) {
     easing: 'ease-out'
   });
 }
+
+provide('isShow', showAdjustModal);
+provide('confirmHandler', function () { });
 
 onMounted(() => {
   balls.value.forEach((ball, index) => {
@@ -91,6 +108,18 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.adjustBtn {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.ballGenerator {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 </style>

@@ -17,3 +17,36 @@
   padding: 5px;
   cursor: pointer;
 }
+
+
+.bgRed {
+  background-color: red;
+}
+
+.bgBlue {
+  background-color: lightskyblue;
+}
+
+.bgGreen {
+  background-color: greenyellow;
+}
+
+.bgGray {
+  background-color: lightgray;
+}
+
+.bgWhite {
+  background-color: white;
+}
+
+.txtWhite {
+  color: white;
+}
+
+.txtBlack {
+  color: black;
+}
+
+.animate__animated {
+  --animate-duration: 0.5s;
+}
