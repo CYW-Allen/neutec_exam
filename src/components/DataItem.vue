@@ -1,12 +1,12 @@
 <template>
-  <ul class="dataList">
-    <li v-for="data of dataList" :key="data.key" :class="{ expanded: expanded[levelNum] === data.key }"
+  <div class="dataList">
+    <div v-for="data of dataList" :key="data.key" :class="{ expanded: expanded[levelNum] === data.key }"
       @click.stop="expandList(data, levelNum)">
       <div class="dataText">{{ data.text }}</div>
       <DataItem v-if="expanded[levelNum] === data.key && data.children instanceof Array" :data-list="data.children"
         :level-num="levelNum + 1" />
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -25,32 +25,19 @@ const expandList = inject('expandList');
 <style scoped>
 .dataList {
   color: white;
+  padding-left: 10px;
 }
 
-.dataList ul,
-.dataList li {
-  list-style-type: none;
-  margin: 10px;
-  text-wrap: nowrap;
-}
-
-.dataList li {
-  padding: 5px;
-}
-
-.dataList li:hover {
+.dataList:hover {
   cursor: pointer;
 }
 
-.dataList li.expanded {
+.dataList .expanded {
   background-color: rgb(150, 150, 150);
-}
-
-.dataList li.expanded {
   color: yellow;
 }
 
 .dataText {
-  padding-left: 5px;
+  padding: 10px;
 }
 </style>
