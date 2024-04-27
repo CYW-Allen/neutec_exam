@@ -14,11 +14,14 @@
 
 <script setup>
 import { ref, provide } from 'vue';
+import axios from 'axios';
 import JiugonggeComp from './components/JiugonggeComp.vue';
 import SideMenu from './components/SideMenu.vue';
 import { animateEle } from './utils/animateHandler';
 
 const showSideMenu = ref(false);
+const DATA_URL = 'data.json';
+const dataList = ref([]);
 
 function closeSideMenu() {
   if (showSideMenu.value) {
@@ -29,7 +32,19 @@ function closeSideMenu() {
   }
 }
 
+async function getData() {
+  try {
+    const resp = (await axios.get(DATA_URL)).data;
+    if (resp instanceof Array) dataList.value = resp;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 provide('showSideMenu', showSideMenu);
+provide('dataList', dataList);
+
+getData();
 </script>
 
 <style scoped>
