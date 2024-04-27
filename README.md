@@ -15,4 +15,4 @@
     - 歷程記錄: 使用 `localStorage` 記錄當前展開狀態。
     - 下拉選單: 使用 `select` 元素處理需求，並利用 `watch` 同步選取結果與項目展開狀態。
 
-*Github: https://github.com/CYW-Allen/neutec_exam*
+*Github page: https://cyw-allen.github.io/neutec_exam/*
