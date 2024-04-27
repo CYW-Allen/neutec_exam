@@ -1,17 +1,35 @@
 <template>
-  <div class="appHeader">
-    <button type="button" class="btn">
+  <div class="appHeader" @click="closeSideMenu">
+    <button type="button" class="btn"  @click.stop="showSideMenu = true">
       <i class="fa-solid fa-bars"></i>
     </button>
   </div>
-  <div class="appBody">
+
+  <div class="appBody" @click="closeSideMenu">
     <JiugonggeComp />
   </div>
+
+  <SideMenu />
 </template>
 
 <script setup>
+import { ref, provide } from 'vue';
 import JiugonggeComp from './components/JiugonggeComp.vue';
+import SideMenu from './components/SideMenu.vue';
+import { animateEle } from './utils/animateHandler';
 
+const showSideMenu = ref(false);
+
+function closeSideMenu() {
+  if (showSideMenu.value) {
+    animateEle('#sideMenuContainer', 'slideOutRight')
+      .then(() => {
+        showSideMenu.value = false;
+      });
+  }
+}
+
+provide('showSideMenu', showSideMenu);
 </script>
 
 <style scoped>
