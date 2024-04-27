@@ -5,10 +5,12 @@
     </button>
   </div>
   <div class="appBody">
+    <JiugonggeComp />
   </div>
 </template>
 
 <script setup>
+import JiugonggeComp from './components/JiugonggeComp.vue';
 
 </script>
 
