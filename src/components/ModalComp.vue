@@ -25,10 +25,9 @@ const showModal = inject('isShow');
 const confirmHandler = inject('confirmHandler');
 
 function closeModal() {
-  animateEle('#modal', 'zoomOut')
-    .then(() => {
-      showModal.value = false;
-    });
+  Promise.all([animateEle('#modal', 'zoomOut'), animateEle('#modalContainer', 'fadeOut')])
+    .catch((err) => { console.log(err); })
+    .finally(() => { showModal.value = false; });
 }
 
 function execConfirmHandler() {

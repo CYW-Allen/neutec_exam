@@ -10,9 +10,9 @@
 
 ## 側邊選單
   - **開啟/關閉**: 使用 CSS `position: absolute` 以及 `left` 動態賦值達成，並導入 animate.css 來處理選單滑動的效果。
-  - **項目渲染**: 使用 recursive component + 條件判斷的應用處理點擊展開時動態生成的項目元素，減少元素渲染數量 (*忽略未展開項目*)。
+  - **項目渲染**: 使用迭代 + teleport動態生成展開的項目元素並維持其樹狀結構。
   - **額外功能**:
     - 歷程記錄: 使用 `localStorage` 記錄當前展開狀態。
-    - 下拉選單: 使用 `select` 元素處理需求，並利用 `watch` 同步選取結果與項目展開狀態。
+    - 下拉選單: 使用 `select` 元素處理需求。
 
 *Github page: https://cyw-allen.github.io/neutec_exam/*

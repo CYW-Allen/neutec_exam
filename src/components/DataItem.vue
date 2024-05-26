@@ -1,43 +1,29 @@
 <template>
-  <div class="dataList">
-    <div v-for="data of dataList" :key="data.key" :class="{ expanded: expanded[levelNum] === data.key }"
-      @click.stop="expandList(data, levelNum)">
-      <div class="dataText">{{ data.text }}</div>
-      <DataItem v-if="expanded[levelNum] === data.key && data.children instanceof Array" :data-list="data.children"
-        :level-num="levelNum + 1" />
-    </div>
+  <div v-for="item, index in expanded">
+    <Teleport  :to="`#lv${index}${item}`">
+      <div v-for="lvItem in dataTable[expanded.slice(0, index + 1).toString()]" :key="`${item}-${lvItem.key}`"
+        :id="`lv${index + 1}${lvItem.key}`" :class="{ expanded: expanded[index + 1] === lvItem.key }"
+        :style="`padding-left: ${(index + 1) * 5}px;`" @click.stop="expandList(lvItem, index + 1)">
+        <div class="paddingEle" :style="expanded[index + 1] === lvItem.key ? 'color:yellow' : ''">{{ lvItem.text }}</div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
 <script setup>
 import { inject } from 'vue';
 
-const props = defineProps({
-  dataList: Array,
-  levelNum: Number,
-});
-
 const expanded = inject('expanded');
 const expandList = inject('expandList');
+const dataTable = inject('dataTable');
 
 </script>
 
 <style scoped>
-.dataList {
-  color: white;
-  padding-left: 10px;
-}
-
-.dataList:hover {
-  cursor: pointer;
-}
-
 .dataList .expanded {
   background-color: rgb(150, 150, 150);
-  color: yellow;
 }
-
-.dataText {
+.paddingEle {
   padding: 10px;
 }
 </style>
